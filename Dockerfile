@@ -34,7 +34,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 
 RUN apt-get install -y build-essential git wget rsync openjdk-21-jdk jupyter \
-	libproj-dev proj-data proj-bin libgeos-dev \
+	libproj-dev proj-data proj-bin libgeos-dev vim nano emacs \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
@@ -69,15 +69,6 @@ RUN ARCH=$(uname -m) \
     && conda create -n scec-dev \
     && conda init bash
 
-#RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-#    && mkdir /home/$APP_UNAME/.conda \
-#    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-#    && rm -f Miniconda3-latest-Linux-x86_64.sh \
-#    && echo "Running $(conda --version)" \
-#    && conda update conda \
-#    && conda create -n scec-dev \
-#    && conda init bash
-
 RUN echo 'conda activate scec-dev' >> /home/$APP_UNAME/.bashrc \
     && bash /home/$APP_UNAME/.bashrc \
     && conda install python=3.10 pip numpy notebook
@@ -104,17 +95,20 @@ RUN cp /home/$APP_UNAME/opensha-fork/build/libs/opensha-all.jar . \
 	&& cd ../kernel \
 	&& jar xf ../kernel.jar \
 	&& cd .. \
-	&& rsync --archive --ignore-existing opensha kernel \
+	&& rsync --archive --ignore-existing opensha/ kernel/ \
 	&& jar cmf kernel/META-INF/MANIFEST.MF kernel.jar -C kernel .
-#
+
 # Add metadata to dockerfile using labels
 LABEL "org.scec.project"="OpenSHA-Jupyter"
 LABEL org.scec.responsible_person="Akash Bhatthal"
 LABEL org.scec.primary_contact="bhatthal@usc.edu"
 LABEL version="$BDATE"
-#
+
 WORKDIR /home/$APP_UNAME
+
+VOLUME ["/home/scecuser/notebooks"]
+
 #ENTRYPOINT ["/bin/bash"]
-ENTRYPOINT ["/usr/bin/jupyter","lab","--ip=0.0.0.0","--port=8888", \
-			"--notebook-dir=/home/scecuser","--allow-root","--no-browser"]
+ENTRYPOINT ["/usr/bin/jupyter","lab","--ip=0.0.0.0","--port=8080", \
+			"--notebook-dir=/home/scecuser/notebooks","--allow-root","--no-browser"]
 
