@@ -13,3 +13,7 @@ Get interactive bash shell for active container
 
 ## Docs
 Java in Jupyter: Outlines how to install natively on M1 Mac. [Google Doc](https://docs.google.com/document/d/1XHZ4cXMgGmyFc_Z0NlksIo-u9DbXp4Mz8naniXoi7os/edit?usp=sharing)
+
+## Tasks Remaining
+- Migrate Dockerfile to use OpenSHA upstream instead of my personal OpenSHA fork after PR is merged
+- After validation with latest changes, upload built Docker image to DockerHub and update the links here accordingly
