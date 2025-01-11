@@ -35,4 +35,6 @@ Get interactive bash shell for active container
 ## Tasks Remaining
 - Migrate Dockerfile to use OpenSHA upstream instead of my personal OpenSHA fork after PR is merged
 - After validation with latest changes, upload built Docker image to DockerHub and update the links here accordingly
+- Enable autobuilding of new images by linking DockerHub repository with this GitHub repository
+- Add project descriptions and images to DockerHub repository
 
