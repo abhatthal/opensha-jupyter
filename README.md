@@ -1,7 +1,16 @@
 # OpenSHA Jupyter Notebooks
-The opensha-jupyter project provides a Docker image available on DockerHub <i>(TODO: Upload to DockerHub and provide link here)</i> and the Dockerfile here on GitHub. This Docker project provides an interactive Jupyerlab session with a customized Java kernel, preloaded with the latest OpenSHA code. This enables realtime execution of OpenSHA code for purposes of demonstration and debugging.
+This Docker project provides an interactive Jupyerlab session with a customized Java kernel, preloaded with the latest OpenSHA code. This enables realtime execution of OpenSHA code for purposes of demonstration and debugging.
+
+## Download
+Download latest build of the opensha_jup image. This image is prebuilt and will use the latest version of opensha/opensha:master at the time it was built.
+
+> docker pull sceccode/opensha_jup:latest
+
+[DockerHub Repository](https://hub.docker.com/repository/docker/sceccode/opensha_jup): sceccode/opensha_jup
 
 ## Build
+If you want to ensure you have the latest changes, you can build the image yourself in a few minutes.
+
 > docker build -t sceccode/opensha_jup .
 
 ## Run
