@@ -21,7 +21,7 @@ ENV APP_UNAME=scecuser \
 APP_GRPNAME=scec \
 APP_UID=1000 \
 APP_GID=20 \
-BDATE=20241217
+BDATE=20250213
 
 # Retrieve the userid and groupid from the args so 
 # Define these parameters to support building and deploying on EC2 so user is not root
@@ -82,13 +82,13 @@ RUN wget https://github.com/allen-ball/ganymede/releases/download/v2.1.2.2023091
 	&& java -jar ganymede-2.1.2.20230910.jar -i
 
 # Build latest OpenSHA from repo
-RUN git clone https://github.com/abhatthal/opensha-fork.git \
-	&& cd opensha-fork \
+RUN git clone https://github.com/opensha/opensha.git \
+	&& cd opensha \
 	&& ./gradlew fatJar
 
 # Augment Ganymede kernel with OpenSHA
 WORKDIR /home/$APP_UNAME/.local/share/jupyter/kernels/ganymede-2.1.2-java-21/
-RUN cp /home/$APP_UNAME/opensha-fork/build/libs/opensha-all.jar . \
+RUN cp /home/$APP_UNAME/opensha/build/libs/opensha-all.jar . \
 	&& mkdir -p kernel opensha \
 	&& cd opensha \
 	&& jar xf ../opensha-all.jar \

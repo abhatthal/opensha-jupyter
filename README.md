@@ -32,9 +32,3 @@ Get interactive bash shell for active container
 * [Java in Jupyter](https://docs.google.com/document/d/1XHZ4cXMgGmyFc_Z0NlksIo-u9DbXp4Mz8naniXoi7os/edit?usp=sharing): Outlines how to install natively on M1 Mac.
 * [SCECpedia Entry](https://strike.scec.org/scecpedia/OpenSHA-Jupyter): OpenSHA Problem and opensha-jupyter project motivations.
 
-## Tasks Remaining
-- Migrate Dockerfile to use OpenSHA upstream instead of my personal OpenSHA fork after PR is merged
-- After validation with latest changes, upload built Docker image to DockerHub and update the links here accordingly
-- Enable autobuilding of new images by linking DockerHub repository with this GitHub repository
-- Add project descriptions and images to DockerHub repository
-
