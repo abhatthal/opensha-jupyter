@@ -32,3 +32,23 @@ Get interactive bash shell for active container
 * [Java in Jupyter](https://docs.google.com/document/d/1XHZ4cXMgGmyFc_Z0NlksIo-u9DbXp4Mz8naniXoi7os/edit?usp=sharing): Outlines how to install natively on M1 Mac.
 * [SCECpedia Entry](https://strike.scec.org/scecpedia/OpenSHA-Jupyter): OpenSHA Problem and opensha-jupyter project motivations.
 
+## Deployment
+Build, tag, and push a cross-platform image to DockerHub.
+```
+# Create a new builder instance with docker-container driver
+# This driver supports multiple platforms via QEMU emulation
+docker buildx create --name multiarch --driver docker-container --bootstrap
+
+# Set the new builder as the default
+docker buildx use multiarch
+
+# Verify supported platforms (should show amd64, arm64, arm/v7, etc.)
+docker buildx inspect multiarch
+
+docker buildx build \
+             --platform linux/amd64,linux/arm64 \
+             --tag sceccode/opensha_jup:latest \
+             --tag sceccode/opensha_jup:$(date +%Y%m%d) \
+             --push .
+```
+
