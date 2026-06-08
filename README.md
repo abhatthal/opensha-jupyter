@@ -47,6 +47,7 @@ docker buildx inspect multiarch
 
 docker buildx build \
              --platform linux/amd64,linux/arm64 \
+             --build-arg BDATE=$(date +%Y%m%d) \
              --tag sceccode/opensha_jup:latest \
              --tag sceccode/opensha_jup:$(date +%Y%m%d) \
              --push .

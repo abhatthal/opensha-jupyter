@@ -13,7 +13,7 @@ LABEL org.opencontainers.image.authors="bhatthal@usc.edu"
 #ARG APP_GRPNAME
 #ARG APP_UID
 #ARG APP_GID
-#ARG BDATE
+ARG BDATE
 
 # The following ENV set the username for this testcase: scecuser
 # Hardcode the user and userID here for testing
@@ -21,7 +21,9 @@ ENV APP_UNAME=scecuser \
 APP_GRPNAME=scec \
 APP_UID=1000 \
 APP_GID=20 \
-BDATE=20250213
+BDATE=$BDATE \
+CONDA_PLUGINS_AUTO_ACCEPT_TOS=true
+
 
 # Retrieve the userid and groupid from the args so 
 # Define these parameters to support building and deploying on EC2 so user is not root
